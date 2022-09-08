@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class CalcModel
 {
     private SaveLoad _saveLoad;
-    
+
     public CalcModel(SaveLoad saveLoad)
     {
         _saveLoad = saveLoad;
@@ -16,13 +16,13 @@ public class CalcModel
     public string Load() =>
         _saveLoad.Load();
 
-    public bool TryDivide(string input, out double rezult)
+    public bool TryDivide(string input, out int rezult)
     {
-        rezult = 0d;
+        rezult = 0;
 
         if (string.IsNullOrWhiteSpace(input))
             return false;
-        
+
         var parts = input.Split("/");
         if (parts.Length == 0)
             return false;
@@ -32,7 +32,7 @@ public class CalcModel
             return false;
 
         if (numbers.Count > 0)
-        { 
+        {
             rezult = numbers[0];
             for (var i = 1; i < numbers.Count; i++)
             {
@@ -43,12 +43,12 @@ public class CalcModel
         return true;
     }
 
-    private bool TryGetNumbers(string[] parts, out List<double> arr)
+    private bool TryGetNumbers(string[] parts, out List<int> arr)
     {
-        arr = new List<double>();
+        arr = new List<int>();
         foreach (var part in parts)
         {
-            if (double.TryParse(part, out var element))
+            if (int.TryParse(part, out var element) && element >= 0)
                 arr.Add(element);
             else
                 return false;
