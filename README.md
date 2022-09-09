@@ -1,2 +1,2 @@
 # U3d_NotCalculator
-Test task about parsing input field
+Test task. MVP. parsing input field. Description in pdf
